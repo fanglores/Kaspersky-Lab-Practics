@@ -1,4 +1,5 @@
 import cv2
+import imutils
 import numpy as np
 
 
@@ -15,7 +16,7 @@ class RecognitionUnit:
                 raise 'Can`t open the video stream'
 
             # define masks boundaries
-            self.red_lower = np.array([136, 87, 111], np.uint8)
+            self.red_lower = np.array([0, 200, 160], np.uint8)
             self.red_upper = np.array([180, 255, 255], np.uint8)
 
             self.green_lower = np.array([25, 52, 72], np.uint8)
@@ -70,8 +71,8 @@ class RecognitionUnit:
         blue_mask = cv2.morphologyEx(red_mask, cv2.MORPH_OPEN, kernel)
 
         # find contours
-        red_contours, _ = cv2.findContours(red_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-        green_contours, _ = cv2.findContours(green_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-        blue_contours, _ = cv2.findContours(blue_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        red_contours = cv2.findContours(red_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[0]
+        green_contours = cv2.findContours(green_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[0]
+        blue_contours = cv2.findContours(blue_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[0]
 
-        return [red_contours, green_contours, blue_contours]
+        return red_contours, green_contours, blue_contours
