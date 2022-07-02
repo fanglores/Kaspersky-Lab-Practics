@@ -10,6 +10,10 @@ class TCP_unit:
         self.addr = (self.host, self.port)
         self.tcp_socket = socket(AF_INET, SOCK_STREAM)
     
+    def __del__(self):
+        self.conn.close()
+        self.tcp_socket.close()
+    
     def connect(self):
         self.tcp_socket.bind(addr)
     
@@ -18,23 +22,15 @@ class TCP_unit:
     
     def recieve:
         self.tcp_socket.listen(1)
+        
+        while True:
+            self.conn, self.addr = self.tcp_socket.accept()
+            self.data = self.conn.recv(1024)
+            
+            print('[DEBUG] TCP received', self.data)
     
 #Бесконечный цикл работы программы
 while True:
-    
-    #Если мы захотели выйти из программы
-    question = input('Do you want to quit? y\\n: ')
-    if question == 'y': break
-    
-    print('wait connection...')
-    
-    #accept - принимает запрос и устанавливает соединение, (по умолчанию работает в блокирующем режиме)
-    #устанавливает новый сокет соединения в переменную conn и адрес клиента в переменную addr
-    conn, addr = tcp_socket.accept()
-    print('client addr: ', addr)
-    
-    #recv - получает сообщение TCP
-    data = conn.recv(1024)
     #если ничего не прислали, завершим программу
     if not data:
         conn.close()
@@ -46,4 +42,4 @@ while True:
         #close - закрывает сокет
         conn.close()
     
-tcp_socket.close()
+
