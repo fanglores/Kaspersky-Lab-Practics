@@ -1,0 +1,39 @@
+use common._
+
+use EDL kl.drivers.BSP
+
+/**
+ * This instruction enables to start up and initialize BSP driver.
+ */
+execute src=Einit, dst=kl.drivers.BSP
+{
+    grant()
+}
+
+/**
+ * This code enables to send requests from kl.drivers.BSP to KOS kernel and get
+ * responses. It makes able to use system calls by this entity.
+ */
+request src=kl.drivers.BSP, dst=kl.core.Core
+{
+    grant()
+}
+
+response src=kl.core.Core, dst=kl.drivers.BSP
+{
+    grant()
+}
+
+/**
+ * This code enables to send requests from Client entity to BSP
+ * drivers and get responses.
+ */
+request src=client.Client, dst=kl.drivers.BSP
+{
+    grant()
+}
+
+response src=kl.drivers.BSP, dst=client.Client
+{
+    grant()
+}

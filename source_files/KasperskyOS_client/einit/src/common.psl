@@ -1,0 +1,58 @@
+execute: kl.core.Execute
+
+use trusted._
+
+use EDL client.Client
+use EDL kl.drivers.GPIO
+
+/**
+ * This instruction enables to start up and initialize entities.
+ */
+execute src=Einit, dst=client.Client
+{
+    grant()
+}
+
+execute src=Einit, dst=kl.drivers.GPIO
+{
+    grant()
+}
+
+/**
+ * This code enables to send requests from entities to KOS kernel and get
+ * responses. It makes able to use system calls by entities.
+ */
+request src=client.Client, dst=kl.core.Core
+{
+    grant()
+}
+
+response src=kl.core.Core, dst=client.Client
+{
+    grant()
+}
+
+request src=kl.drivers.GPIO, dst=kl.core.Core
+{
+    grant()
+}
+
+response src=kl.core.Core, dst=kl.drivers.GPIO
+{
+    grant()
+}
+
+/**
+ * This code enables to send requests from Client entity to GPIO
+ * drivers and get responses.
+ */
+
+request src=client.Client, dst=kl.drivers.GPIO
+{
+    grant()
+}
+
+response src=kl.drivers.GPIO, dst=client.Client
+{
+    grant()
+}

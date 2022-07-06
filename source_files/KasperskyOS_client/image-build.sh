@@ -14,4 +14,4 @@ cmake -G "Unix Makefiles" \
       -D CMAKE_BUILD_TYPE:STRING=Debug \
       -D CMAKE_INSTALL_PREFIX:STRING=$BUILD/../install \
       -D CMAKE_TOOLCHAIN_FILE=$SDK_PREFIX/toolchain/share/toolchain-arm-kos.cmake \
-      ../ && make sim
+      ../ && make kos-image
