@@ -10,15 +10,19 @@ TCPEntity::TCPEntity()
 		/* Add network interface. */
 		while (!configure_net_iface(DEFAULT_INTERFACE, "10.0.2.10", DEFAULT_MASK, DEFAULT_GATEWAY, DEFAULT_MTU)) 
 		{
-		perror(DEFAULT_INTERFACE ": network iface configuration failed\n");
-		i++;
+			perror(DEFAULT_INTERFACE ": network iface configuration failed\n");
+			i++;
 
-		print("Retrying in 5 secs...");
-		sleep(5);
-		fprintf(stderr, "\nAttempt No%d\n", i);
+			print("Retrying in 5 secs...");
+			sleep(5);
+			fprintf(stderr, "\nAttempt No%d\n", i);
 		}
 
-		if (!list_network_ifaces()) perror("listing of host network interfaces failes\n");
+		if (!list_network_ifaces()) 
+		{
+			perror("listing of host network interfaces failes\n");
+			exit(1);
+		}
 
 	#else
 	#define server_addr "localhost"

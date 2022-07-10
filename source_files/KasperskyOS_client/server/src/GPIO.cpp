@@ -9,11 +9,13 @@ GPIOEntity::GPIOEntity()
 		if (BspInit(NULL) != BSP_EOK)
 		{
 		    print("Failed to initialize BSP!");
+		    exit(1);
 		}
 
 		if (BspSetConfig("gpio0", "raspberry_pi4b.default") != BSP_EOK)
 		{
 		    	print("Failed to set mux configuration for gpio0 module!");
+		    	exit(1);
 		}
    	}
 	#endif
@@ -21,6 +23,7 @@ GPIOEntity::GPIOEntity()
     	if (GpioInit())
     	{
 		print("GpioInit failed!");
+		exit(1);
     	}
 
     	/* initialize and setup gpio0 port */
@@ -28,6 +31,7 @@ GPIOEntity::GPIOEntity()
     	if (GpioOpenPort("gpio0", &handle) || handle == GPIO_INVALID_HANDLE)
     	{
 		print("GpioOpenPort failed");
+		exit(1);
     	}
     	
     	print("[GPIOEntity] Initialisation completed!");
@@ -46,8 +50,6 @@ GPIOEntity::~GPIOEntity()
 		print("[GPIOEntity] GpioClosePort failed");
     	}
 }
-
-
 
 
 // Motor controller class

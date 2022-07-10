@@ -2,6 +2,7 @@
 #include "TCP.h"
 #include "Robot.h"
 
+
 void print(const char* msg)
 {
 	fprintf(stderr, msg);
