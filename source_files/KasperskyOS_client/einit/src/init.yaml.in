@@ -1,0 +1,20 @@
+entities:
+
+# Entity "server"
+- name: server.Server
+  connections:
+  - target: env.Env
+    id: {var: ENV_SERVICE_NAME, include: env/env.h}
+  - target: vfs.NetVfs
+    id: VFS1
+
+@INIT_Server_ENTITY_CONNECTIONS@
+
+- name: env.Env
+
+- name: vfs.NetVfs
+  connections:
+  - target: env.Env
+    id: {var: ENV_SERVICE_NAME, include: env/env.h}
+
+@INIT_EXTERNAL_ENTITIES@

@@ -1,0 +1,21 @@
+use security._
+
+use EDL kl.drivers.PCIE
+
+/**
+ * This instruction enables to start up and initialize non-platform kl.drivers.PCIE entity.
+ */
+execute src=Einit, dst=kl.drivers.PCIE
+{
+    grant()
+}
+
+request src=kl.drivers.PCIE, dst=kl.core.Core
+{
+    grant()
+}
+
+response src=kl.core.Core, dst=kl.drivers.PCIE
+{
+    grant()
+}
