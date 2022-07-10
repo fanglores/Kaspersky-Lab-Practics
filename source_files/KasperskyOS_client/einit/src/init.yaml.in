@@ -1,6 +1,0 @@
-entities:
-
-- name: client.Client
-@INIT_Client_ENTITY_CONNECTIONS@
-
-@INIT_EXTERNAL_ENTITIES@
