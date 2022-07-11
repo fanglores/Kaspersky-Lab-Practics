@@ -9,7 +9,7 @@ entities:
     id: VFS1
 
 # Can`t init both: BSP either VFS
-@INIT_Server_ENTITY_CONNECTIONS@
+# @INIT_Server_ENTITY_CONNECTIONS@
 
 # Entity "env"
 - name: env.Env
