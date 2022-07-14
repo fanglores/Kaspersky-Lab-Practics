@@ -11,8 +11,8 @@
 #include <platform/platform.h>
 #include <kos_net.h>
 
-// rapidjson
-#include "../rapidjson/include/rapidjson/document.h"
+// json
+#include "JSON.h"
 
 #define MSG_SIZE 1024
 
@@ -29,6 +29,6 @@ public:
 	TCPEntity();
 	int Connect();
 	int Send(const char* msg);
-	int Receive(rapidjson::Document& rcv_cmd);
+	int Receive(JSONCommand* jc);
 	~TCPEntity();
 };

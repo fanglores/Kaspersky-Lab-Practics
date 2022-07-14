@@ -72,7 +72,7 @@ int TCPEntity::Connect()
 	return 0;
 }
 
-int TCPEntity::Receive(rapidjson::Document& rcv_cmd)
+int TCPEntity::Receive(JSONCommand* jc)
 {
 	print("[TCPEntity] Receiving...");
 
@@ -83,7 +83,7 @@ int TCPEntity::Receive(rapidjson::Document& rcv_cmd)
 	    if(bytes_read > 0)
 	    { 
 		printf("[TCPEntity] Received message: %s\n", buf);
-		rcv_cmd.Parse(buf);
+		jc = new JSONCommand(buf);
 		
 		return 0;
 	    }
