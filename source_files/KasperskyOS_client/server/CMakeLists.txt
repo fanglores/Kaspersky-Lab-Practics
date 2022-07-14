@@ -12,6 +12,8 @@ include(CMakePrintHelpers)
 cmake_print_variables(server_edl_files)
 
 
+include_directories(${CMAKE_CURRET_SOURCE_DIR}/rapidjson/include)
+
 SET(HEADERS "src/GPIO.h" "src/GPIO.cpp" "src/TCP.h" "src/TCP.cpp" "src/Robot.h" "src/Robot.cpp")
 
 add_executable (Server "src/main.cpp" ${HEADERS})

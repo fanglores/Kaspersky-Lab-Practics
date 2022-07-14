@@ -3,17 +3,23 @@ entities:
 # Entity "server"
 - name: server.Server
   connections:
+  - target: kl.drivers.GPIO
+    id: kl.drivers.GPIO
+  - target: kl.drivers.BSP
+    id: kl.drivers.BSP
   - target: env.Env
     id: {var: ENV_SERVICE_NAME, include: env/env.h}
   - target: vfs.NetVfs
     id: VFS1
 
-# Can`t init both: BSP either VFS
-# @INIT_Server_ENTITY_CONNECTIONS@
+- name: kl.drivers.GPIO
+  path: gpio_hw
+  
+- name: kl.drivers.BSP
+  path: bsp_hw
 
 # Entity "env"
 - name: env.Env
-
 
 # Entity "vfs"
 - name: vfs.NetVfs
@@ -21,5 +27,8 @@ entities:
   - target: env.Env
     id: {var: ENV_SERVICE_NAME, include: env/env.h}
 
+
+# Can`t init both: BSP either VFS
+# @INIT_Server_ENTITY_CONNECTIONS@
 
 @INIT_EXTERNAL_ENTITIES@

@@ -24,9 +24,13 @@ int main()
 	
 	print("General initialisation completed!");
 	
+	// General execution of the program
+	Oleg->run();
+	return 0;
+	
 	// Robot driving tests
 	print("\nRobot test: forward");
-	Oleg->forward(1000);
+	Oleg->forward(500);
 	return 0;
 	print("\nRobot test: left");
 	Oleg->turn_left(200);
@@ -35,7 +39,7 @@ int main()
 	Oleg->turn_right(200);
 	
 	print("\nRobot test: backward");
-	Oleg->backward(200);   	
+	Oleg->backward(0);   	
     	
 
     	print("Program is shutting down!");

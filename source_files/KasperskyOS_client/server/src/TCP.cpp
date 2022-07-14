@@ -8,7 +8,7 @@ TCPEntity::TCPEntity()
 		int i = 1;
 
 		/* Add network interface. */
-		while (!configure_net_iface(DEFAULT_INTERFACE, "10.0.2.10", DEFAULT_MASK, DEFAULT_GATEWAY, DEFAULT_MTU)) 
+		while (!configure_net_iface(DEFAULT_INTERFACE, "10.0.2.10", "255.255.255.0", "10.0.2.1", DEFAULT_MTU)) 
 		{
 			perror(DEFAULT_INTERFACE ": network iface configuration failed\n");
 			i++;
@@ -29,6 +29,7 @@ TCPEntity::TCPEntity()
 	#endif
 	
 	print("[TCPEntity] Network interface initialisation completed!");
+	Connect();
 }
 
 
@@ -54,40 +55,47 @@ int TCPEntity::Connect()
 	}
 	
 	print("[TCPEntiry] Binding successful!");
+	
+	
+	print("[TCPEntity] Waiting for connection...");
+	listen(listener, 1);
+	
+	sock = accept(listener, NULL, NULL);
+	if(sock < 0) 
+	{
+	    perror("accept"); 
+	    return 1;
+	}
+	
+	print("[TCPEntity] Connection established!");
+	
 	return 0;
 }
 
-int TCPEntity::Receive()
+int TCPEntity::Receive(rapidjson::Document& rcv_cmd)
 {
-	print("[TCPEntity] Listening...");
-	listen(listener, 1);
+	print("[TCPEntity] Receiving...");
+
 	while(1) 
 	{
-		sock = accept(listener, NULL, NULL);
-		if(sock < 0) 
-		{
-		    perror("accept"); 
-		    return 1;
-		}
+	    bytes_read = recv(sock, buf, 1024, 0);
 
-		while(1) 
-		{
-		    bytes_read = recv(sock, buf, 1024, 0);
-
-		    if(bytes_read > 0)
-		    { 
-			printf("[TCPEntity] Received message: %s\n", buf);
-		    }
-		}
-
-		close(sock);
+	    if(bytes_read > 0)
+	    { 
+		printf("[TCPEntity] Received message: %s\n", buf);
+		rcv_cmd.Parse(buf);
+		
+		return 0;
+	    }
 	}
-	return 0;
+	
+	print("[TCPEntity] Something went wrong!");
+	return 1;
 }
 
 int TCPEntity::Send(const char* msg)
 {
-	print("Send is not implemented!");
+	print("[TCPEntity] Send is not implemented!");
 	return 1;
 }
 
@@ -95,5 +103,6 @@ int TCPEntity::Send(const char* msg)
 TCPEntity::~TCPEntity()
 {
 	print("[TCPEntity] Destructing...");
+	close(sock);
 	close(listener);
 }
