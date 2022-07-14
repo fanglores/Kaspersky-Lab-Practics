@@ -1,0 +1,3 @@
+[submodule "rapidjson"]
+	path = source_files/KasperskyOS_client/server/rapidjson
+	url = https://github.com/Tencent/rapidjson.git
