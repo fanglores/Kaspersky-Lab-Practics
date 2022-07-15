@@ -12,11 +12,6 @@ entities:
   - target: vfs.NetVfs
     id: VFS1
 
-- name: kl.drivers.GPIO
-  path: gpio_hw
-  
-- name: kl.drivers.BSP
-  path: bsp_hw
 
 # Entity "env"
 - name: env.Env
@@ -26,9 +21,5 @@ entities:
   connections:
   - target: env.Env
     id: {var: ENV_SERVICE_NAME, include: env/env.h}
-
-
-# Can`t init both: BSP either VFS
-# @INIT_Server_ENTITY_CONNECTIONS@
 
 @INIT_EXTERNAL_ENTITIES@
