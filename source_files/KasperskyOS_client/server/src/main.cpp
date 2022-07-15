@@ -10,6 +10,7 @@ void print(const char* msg)
 
 void GPIO_Test(Robot* Oleg)
 {
+	print("[TEST] GPIO Test has ended!");
 	print("\nRobot test: forward");
 	Oleg->forward(500);
 	
@@ -22,12 +23,16 @@ void GPIO_Test(Robot* Oleg)
 	print("\nRobot test: backward");
 	Oleg->backward(500);   
 	
+	print("[TEST] GPIO Test has ended!");
 	exit(0);
 }
 
 void TCP_Test(Robot* Oleg)
 {
-	print("TCP Test is not implemented!");
+	print("[TEST] TCP Test has started!");
+	Oleg->run();
+	
+	print("[TEST] TCP Test has ended!");
 	exit(1);
 }
 
@@ -48,10 +53,10 @@ int main()
 	print("General initialisation completed!");
 	
 	// Robot driving tests
-	GPIO_Test(Oleg);
+	//GPIO_Test(Oleg);
 	
 	// Robot network tests
-	//TCP_Test(Oleg);
+	TCP_Test(Oleg);
 	
 	// General execution of the program
 	Oleg->run();  	

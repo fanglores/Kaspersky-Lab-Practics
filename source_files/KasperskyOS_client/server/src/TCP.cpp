@@ -8,7 +8,7 @@ TCPEntity::TCPEntity()
 		int i = 1;
 
 		/* Add network interface. */
-		while (!configure_net_iface(DEFAULT_INTERFACE, "10.0.2.10", "255.255.255.0", "10.0.2.1", DEFAULT_MTU)) 
+		while (!configure_net_iface("en0", "10.0.2.10", "255.255.255.0", "10.0.2.1", DEFAULT_MTU)) 
 		{
 			perror(DEFAULT_INTERFACE ": network iface configuration failed\n");
 			i++;
@@ -56,9 +56,7 @@ int TCPEntity::Connect()
 	
 	print("[TCPEntiry] Binding successful!");
 	
-	print("Connect skipped!!!");
-	return 1;
-	
+
 	print("[TCPEntity] Waiting for connection...");
 	listen(listener, 1);
 	
