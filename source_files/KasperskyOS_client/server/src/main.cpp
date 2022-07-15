@@ -5,9 +5,32 @@
 
 void print(const char* msg)
 {
-	fprintf(stderr, msg);
-	fprintf(stderr, "\n");
+	fprintf(stderr, "%s\n", msg);
 }
+
+void GPIO_Test(Robot* Oleg)
+{
+	print("\nRobot test: forward");
+	Oleg->forward(500);
+	
+	print("\nRobot test: left");
+	Oleg->turn_left(200);
+	
+	print("\nRobot test: right");
+	Oleg->turn_right(200);
+	
+	print("\nRobot test: backward");
+	Oleg->backward(500);   
+	
+	exit(0);
+}
+
+void TCP_Test(Robot* Oleg)
+{
+	print("TCP Test is not implemented!");
+	exit(1);
+}
+
 
 int main()
 {
@@ -24,25 +47,15 @@ int main()
 	
 	print("General initialisation completed!");
 	
-	// General execution of the program
-	Oleg->run();
-	return 0;
-	
 	// Robot driving tests
-	print("\nRobot test: forward");
-	Oleg->forward(500);
-	return 0;
-	print("\nRobot test: left");
-	Oleg->turn_left(200);
+	GPIO_Test(Oleg);
 	
-	print("\nRobot test: right");
-	Oleg->turn_right(200);
+	// Robot network tests
+	//TCP_Test(Oleg);
 	
-	print("\nRobot test: backward");
-	Oleg->backward(0);   	
-    	
+	// General execution of the program
+	Oleg->run();  	
 
     	print("Program is shutting down!");
-
     	return EXIT_SUCCESS;
 }

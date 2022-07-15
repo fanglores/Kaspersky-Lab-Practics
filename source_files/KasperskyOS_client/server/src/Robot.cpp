@@ -47,7 +47,7 @@ void Robot::forward(const double& val)
 	motorA->stop();
 	motorB->stop();
 	
-	usleep(1000*200);
+	usleep(static_cast<useconds_t>(1000*200));
 }
 
 void Robot::backward(const double& val)
@@ -59,7 +59,7 @@ void Robot::backward(const double& val)
 	motorA->stop();
 	motorB->stop();
 	
-	usleep(1000*200);
+	usleep(static_cast<useconds_t>(1000*200));
 }
 
 void Robot::turn_left(const double& val)
@@ -71,7 +71,7 @@ void Robot::turn_left(const double& val)
 	motorA->stop();
 	motorB->stop();
 	
-	usleep(1000*200);
+	usleep(static_cast<useconds_t>(1000*200));
 }
 
 void Robot::turn_right(const double& val)
@@ -83,6 +83,6 @@ void Robot::turn_right(const double& val)
 	motorA->stop();
 	motorB->stop();
 	
-	usleep(1000*200);
+	usleep(static_cast<useconds_t>(1000*200));
 }
 

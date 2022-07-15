@@ -56,6 +56,8 @@ int TCPEntity::Connect()
 	
 	print("[TCPEntiry] Binding successful!");
 	
+	print("Connect skipped!!!");
+	return 1;
 	
 	print("[TCPEntity] Waiting for connection...");
 	listen(listener, 1);
