@@ -1,5 +1,5 @@
 # Kaspersky Hackaton 2022
-#### Moscow Aviation Institute featuring Kaspersky Laboratory hackaton.  Task: create robot platform under the Kaspersky Operating System (KOS), server under the Linux OS. Server is reading image stream from camera, generating commands for robot, sends them via TCP protocol. Server have to detect color marks and lead robot on route, followed all marks.  
+#### Moscow Aviation Institute featuring Kaspersky Laboratory hackaton.  Task: create robot platform under the Kaspersky Operating System (KasperskyOS), server under the Linux OS. Server is reading image stream from camera, generating commands for robot, sends them via TCP protocol. Server have to detect color marks and lead robot on route, followed all marks.  
   
 #### Quick Access
 [Server folder](source_files/linux_server) - server implementation  
